@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import Swinject
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let container: Container = {
+        let container = Container()
+        container.register(CoinMarketCapService.self) { _ in CoinMarketCapService() }
+        container.register(CryptoCurrenciesViewModelProtocol.self) { r in
+            ApiConfiguration.coinsLimit = 25
+            ApiConfiguration.defaultCurrency = "USD"
+            ApiConfiguration.requestInterval = 60
+            return CryptoCurrenciesViewModel(service: r.resolve(CoinMarketCapService.self)!)
+        }
+        return container
+    }()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
