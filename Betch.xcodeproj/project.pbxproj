@@ -22,6 +22,7 @@
 		C611D1A01F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D19E1F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.swift */; };
 		C611D1A11F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C611D19F1F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.xib */; };
 		C611D1A31F43C396007A4DA8 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1A21F43C396007A4DA8 /* CurrencyTextField.swift */; };
+		C611D1A61F468177007A4DA8 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1A51F468177007A4DA8 /* CountryCode.swift */; };
 		D4F9A79B30A637A7B4F73A08 /* Pods_Betch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637A02AD5D407AC6CD1D0441 /* Pods_Betch.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		C611D19E1F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		C611D19F1F43BF72007A4DA8 /* CryptoCurrencyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CryptoCurrencyTableViewCell.xib; sourceTree = "<group>"; };
 		C611D1A21F43C396007A4DA8 /* CurrencyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		C611D1A51F468177007A4DA8 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		C611D1731F3F7321007A4DA8 /* Betch */ = {
 			isa = PBXGroup;
 			children = (
+				C611D1A41F468140007A4DA8 /* Utils */,
 				C611D1971F429472007A4DA8 /* ViewModels */,
 				C611D1941F4292ED007A4DA8 /* ViewControllers */,
 				C611D1931F4292D5007A4DA8 /* View */,
@@ -149,6 +152,14 @@
 				C611D19A1F4294F0007A4DA8 /* CryptoCurrenciesViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C611D1A41F468140007A4DA8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C611D1A51F468177007A4DA8 /* CountryCode.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 				C611D1751F3F7321007A4DA8 /* AppDelegate.swift in Sources */,
 				C611D18E1F3F8825007A4DA8 /* ApiTask.swift in Sources */,
 				C611D1901F3F911F007A4DA8 /* ApiConfiguration.swift in Sources */,
+				C611D1A61F468177007A4DA8 /* CountryCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

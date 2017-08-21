@@ -12,8 +12,8 @@ import MGSwipeTableCell
 class CryptoCurrenciesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var favorites = [String]()
+    fileprivate var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
     fileprivate var viewModel: CryptoCurrenciesViewModelProtocol? {
         didSet {
             self.viewModel?.cryptoCurrenciesChanged = { [unowned self] viewModel in
@@ -41,24 +41,40 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
         let cell = Bundle.main.loadNibNamed("CryptoCurrencyTableViewCell", owner: self, options: nil)?.first as! CryptoCurrencyTableViewCell
         let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
         cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
-        cell.currencyPrice.text = "$\(currency.price!)"
-        cell.currencyPriceChange.text = currency.percent_change_24h!
+        cell.currencyPrice.text = "\(appDelegate.currencySymbol!)\(currency.price!)"
+        cell.currencyPriceChange.text = "\(currency.percent_change_24h!)%"
         cell.currencyChangePeriod.text = "24 hours"
         if (currency.percent_change_24h as NSString).floatValue < 0 {
             cell.currencyChangeImageView.image = #imageLiteral(resourceName: "DownArrow")
         } else {
             cell.currencyChangeImageView.image = #imageLiteral(resourceName: "UpArrow")
         }
-        
-        let favoriteButton = MGSwipeButton(title: "Favorite", icon: #imageLiteral(resourceName: "Favorite"), backgroundColor: .white) {
-            (sender: MGSwipeTableCell!) -> Bool in
-            if let cell = sender as? CryptoCurrencyTableViewCell {
-                self.favorites.append(cell.currencyName.text!)
-            }
-            return true
+        if (currency.isFavorite ?? false) {
+            cell.favoriteIndicator.isHidden = false
         }
         
-        cell.leftButtons = [favoriteButton]
+        cell.currencySymbol = currency.symbol!
+        
+        if let favorited = currency.isFavorite, favorited {
+            let unFavoriteButton = MGSwipeButton(title: "UnFavorite", icon: #imageLiteral(resourceName: "Unfavorite"), backgroundColor: .white) {
+                (sender: MGSwipeTableCell!) -> Bool in
+                if let cell = sender as? CryptoCurrencyTableViewCell {
+                    self.viewModel?.removeFavorite(currency: cell.currencySymbol!)
+                }
+                return true
+            }
+            cell.leftButtons = [unFavoriteButton]
+        } else {
+            let favoriteButton = MGSwipeButton(title: "Favorite", icon: #imageLiteral(resourceName: "Favorite"), backgroundColor: .white) {
+                (sender: MGSwipeTableCell!) -> Bool in
+                if let cell = sender as? CryptoCurrencyTableViewCell {
+                    self.viewModel?.addFavorite(currency: cell.currencySymbol!)
+                }
+                return true
+            }
+            cell.leftButtons = [favoriteButton]
+        }
+        
         cell.leftSwipeSettings.transition = .border
         return cell
     }

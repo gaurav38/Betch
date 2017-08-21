@@ -35,6 +35,14 @@ class ApiResources {
         "EUR": "price_eur",
         "GBP": "price_gbp",
         "INR": "price_inr",
-        "JPY": "price_jpy"
+        "JPY": "price_jpy",
+        "CHF": "price_chf",
+        "CNY": "price_cny",
+        "BRL": "price_brl",
+        "HKD": "price_hkd",
+        "IDR": "price_idr",
+        "KRW": "price_krw",
+        "MXN": "price_mxn",
+        "RUB": "price_rub"
     ]
 }

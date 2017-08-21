@@ -17,6 +17,7 @@ class CryptoCurrency {
     private(set) var price: String!
     private(set) var currency: String!
     private(set) var symbol: String!
+    public var isFavorite: Bool?
     
     init(_ data: [String: AnyObject], for currency: String) {
         if let id = data[ApiResources.ResponseDataParams.ID] {
@@ -25,14 +26,14 @@ class CryptoCurrency {
         if let name = data[ApiResources.ResponseDataParams.NAME] {
             self.name = name as! String
         }
-        if let percent_change_1h = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_1H] {
-            self.percent_change_1h = percent_change_1h as! String
+        if let percent_change_1h = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_1H], let change = percent_change_1h as? String {
+            self.percent_change_1h = change
         }
-        if let percent_change_24h = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_24H] {
-            self.percent_change_24h = percent_change_24h as! String
+        if let percent_change_24h = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_24H], let change = percent_change_24h as? String {
+            self.percent_change_24h = change
         }
-        if let percent_change_7d = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_7D] {
-            self.percent_change_7d = percent_change_7d as! String
+        if let percent_change_7d = data[ApiResources.ResponseDataParams.PERCENT_CHANGE_7D], let change = percent_change_7d as? String {
+            self.percent_change_7d = change
         }
         self.currency = currency
         if let symbol = data[ApiResources.ResponseDataParams.SYMBOL] {

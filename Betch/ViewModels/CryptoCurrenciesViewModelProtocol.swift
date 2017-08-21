@@ -13,6 +13,9 @@ protocol CryptoCurrenciesViewModelProtocol {
     var cryptoCurrencies: [CryptoCurrency]! { get set }
     func fetchCryptoCurrencies()
     var cryptoCurrenciesChanged: ((CryptoCurrenciesViewModelProtocol) -> ())? { get set }
+    var favorites: [String]! { get }
     
     init(service: CoinMarketCapService)
+    func addFavorite(currency: String)
+    func removeFavorite(currency: String)
 }

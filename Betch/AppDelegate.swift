@@ -13,13 +13,12 @@ import Swinject
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private(set) var currencyCode: String?
+    private(set) var currencySymbol: String?
     let container: Container = {
         let container = Container()
         container.register(CoinMarketCapService.self) { _ in CoinMarketCapService() }
         container.register(CryptoCurrenciesViewModelProtocol.self) { r in
-            ApiConfiguration.coinsLimit = 25
-            ApiConfiguration.defaultCurrency = "USD"
-            ApiConfiguration.requestInterval = 60
             return CryptoCurrenciesViewModel(service: r.resolve(CoinMarketCapService.self)!)
         }
         return container
@@ -27,7 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let currency = CountryCode.getCurrency()
+        currencyCode = currency.name
+        currencySymbol = currency.symbol
+        ApiConfiguration.coinsLimit = 25
+        ApiConfiguration.defaultCurrency = currency.name
+        print(ApiConfiguration.defaultCurrency)
+        ApiConfiguration.requestInterval = 60
         return true
     }
 

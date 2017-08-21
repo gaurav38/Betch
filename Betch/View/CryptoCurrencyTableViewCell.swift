@@ -16,13 +16,19 @@ class CryptoCurrencyTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var currencyPriceChange: UITextField!
     @IBOutlet weak var currencyChangePeriod: UITextField!
     @IBOutlet weak var currencyChangeImageView: UIImageView!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var favoriteIndicator: UIImageView!
+    
+    var currencySymbol: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        mainView.layer.cornerRadius = 10.0
         currencyName.isUserInteractionEnabled = false
         currencyPrice.isUserInteractionEnabled = false
         currencyPriceChange.isUserInteractionEnabled = false
         currencyChangePeriod.isUserInteractionEnabled = false
+        favoriteIndicator.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -22,16 +22,28 @@
                         <rect key="frame" x="10" y="10" width="300" height="89.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Y8O-3u-Qui" userLabel="CurrencyStackView">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="89.5"/>
+                                <rect key="frame" x="0.0" y="10" width="150" height="79.5"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNN-7s-VH6" userLabel="CurrencyName" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="38.5"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ypa-Bv-Vub">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="20"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavoriteIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="BDW-wC-fio">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="5pc-ny-BYO"/>
+                                                    <constraint firstAttribute="height" constant="20" id="K9v-NW-p5G"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNN-7s-VH6" userLabel="CurrencyName" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
+                                                <rect key="frame" x="40" y="0.0" width="110" height="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dba-Zh-dCu" userLabel="CurrencyPrice" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="38.5" width="150" height="51"/>
+                                        <rect key="frame" x="0.0" y="20" width="150" height="59.5"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -44,7 +56,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hEJ-0x-JA6">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="65.5"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="11" height="65.5"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -75,7 +87,7 @@
                             <constraint firstAttribute="bottom" secondItem="Y8O-3u-Qui" secondAttribute="bottom" id="KdJ-pY-ch9"/>
                             <constraint firstAttribute="bottom" secondItem="X9b-if-UIH" secondAttribute="bottom" id="SR1-3H-G8a"/>
                             <constraint firstItem="Y8O-3u-Qui" firstAttribute="leading" secondItem="QzN-vJ-gw5" secondAttribute="leading" id="Ssh-jw-faP"/>
-                            <constraint firstItem="Y8O-3u-Qui" firstAttribute="top" secondItem="QzN-vJ-gw5" secondAttribute="top" id="Vg2-8n-NR2"/>
+                            <constraint firstItem="Y8O-3u-Qui" firstAttribute="top" secondItem="QzN-vJ-gw5" secondAttribute="top" constant="10" id="Vg2-8n-NR2"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -93,8 +105,13 @@
                 <outlet property="currencyName" destination="zNN-7s-VH6" id="vZi-Ko-iOd"/>
                 <outlet property="currencyPrice" destination="Dba-Zh-dCu" id="L6m-IA-1xF"/>
                 <outlet property="currencyPriceChange" destination="Meh-Is-4Kj" id="uBA-qt-dlp"/>
+                <outlet property="favoriteIndicator" destination="BDW-wC-fio" id="JsU-pN-gi3"/>
+                <outlet property="mainView" destination="QzN-vJ-gw5" id="Muc-8d-88S"/>
             </connections>
             <point key="canvasLocation" x="34" y="87"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="FavoriteIndicator" width="24" height="24"/>
+    </resources>
 </document>
