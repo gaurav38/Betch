@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h4Z-do-PIy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Crypto Currencies View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="73o-n4-JmY">
+            <objects>
+                <navigationController id="h4Z-do-PIy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sG0-g3-uyk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="14u-aw-X4O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOd-Uf-lSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-726" y="15"/>
+        </scene>
+        <!--BETCH-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CryptoCurrenciesViewController" customModule="Betch" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,23 +44,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdh-3H-YDo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                <color key="backgroundColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkS-yc-4hT" userLabel="ButtonsView">
+                                <rect key="frame" x="16" y="74" width="343" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-1i-IDy" userLabel="ButtonsStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYn-4F-3Mf">
+                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-Iu-OIa" userLabel="CurrencyChangeButton">
+                                                        <rect key="frame" x="0.0" y="5" width="78.5" height="30"/>
+                                                        <state key="normal" title="USD">
+                                                            <color key="titleColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="changeCurrency:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhE-tf-k0R"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="Me7-Iu-OIa" firstAttribute="centerY" secondItem="CYn-4F-3Mf" secondAttribute="centerY" id="VQk-vm-Qpx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Me7-Iu-OIa" secondAttribute="trailing" id="W8T-vx-fqh"/>
+                                                    <constraint firstItem="Me7-Iu-OIa" firstAttribute="leading" secondItem="CYn-4F-3Mf" secondAttribute="leading" id="qJ5-4v-tYD"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qs9-GC-zZO">
+                                                <rect key="frame" x="88.5" y="0.0" width="78" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaS-yS-95P" userLabel="Change1HourButton">
+                                                        <rect key="frame" x="-0.5" y="5" width="78.5" height="30"/>
+                                                        <state key="normal" title="1 Hour">
+                                                            <color key="titleColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="change1Hour:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fyj-bZ-Y89"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="KaS-yS-95P" firstAttribute="leading" secondItem="Qs9-GC-zZO" secondAttribute="leading" id="AzO-PJ-Ttb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KaS-yS-95P" secondAttribute="trailing" id="Of3-Qf-jQG"/>
+                                                    <constraint firstItem="KaS-yS-95P" firstAttribute="centerY" secondItem="Qs9-GC-zZO" secondAttribute="centerY" id="fwK-Q4-nd8"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsF-2K-9th">
+                                                <rect key="frame" x="176.5" y="0.0" width="78.5" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPQ-Ys-LZH" userLabel="Change24HoursButton">
+                                                        <rect key="frame" x="-0.5" y="5" width="79" height="30"/>
+                                                        <state key="normal" title="24 Hours">
+                                                            <color key="titleColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="change24Hours:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VYX-s0-1Du"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="cPQ-Ys-LZH" firstAttribute="centerY" secondItem="CsF-2K-9th" secondAttribute="centerY" id="UbZ-wX-7MZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cPQ-Ys-LZH" secondAttribute="trailing" id="jSq-dA-nXB"/>
+                                                    <constraint firstItem="cPQ-Ys-LZH" firstAttribute="leading" secondItem="CsF-2K-9th" secondAttribute="leading" id="y19-O2-nfo"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMh-K1-4Qx">
+                                                <rect key="frame" x="265" y="0.0" width="78" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1U-S0-gXW" userLabel="Change7DaysButton">
+                                                        <rect key="frame" x="0.0" y="5" width="78" height="30"/>
+                                                        <state key="normal" title="7 Days">
+                                                            <color key="titleColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="change7Days:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Olm-XN-h7S"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="d1U-S0-gXW" firstAttribute="centerY" secondItem="TMh-K1-4Qx" secondAttribute="centerY" id="5NS-Nz-xci"/>
+                                                    <constraint firstItem="d1U-S0-gXW" firstAttribute="leading" secondItem="TMh-K1-4Qx" secondAttribute="leading" id="FW1-0A-AIM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="d1U-S0-gXW" secondAttribute="trailing" id="RdG-5L-BHA"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="RHH-ta-nDr"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="r67-ze-ZqF"/>
+                                    <constraint firstAttribute="height" constant="40" id="1XI-Fx-VWk"/>
+                                    <constraint firstItem="7z2-1i-IDy" firstAttribute="leading" secondItem="FkS-yc-4hT" secondAttribute="leading" id="Dey-cf-emO"/>
+                                    <constraint firstItem="7z2-1i-IDy" firstAttribute="centerY" secondItem="FkS-yc-4hT" secondAttribute="centerY" id="Nvs-NZ-EHl"/>
+                                    <constraint firstAttribute="trailing" secondItem="7z2-1i-IDy" secondAttribute="trailing" id="bQS-ll-R4E"/>
                                 </constraints>
-                                <color key="barTintColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="BETCH" id="Mu2-q3-ozY"/>
-                                </items>
-                            </navigationBar>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3G6-OF-ZFz">
-                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CryptoCurrencyTableViewCell" textLabel="3MI-fW-aWf" detailTextLabel="SCG-Ic-FN5" style="IBUITableViewCellStyleValue1" id="PDw-Ep-qr0" customClass="CryptoCurrencyTableViewCell" customModule="Betch" customModuleProvider="target">
@@ -69,21 +177,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3G6-OF-ZFz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2IQ-xZ-MIx"/>
-                            <constraint firstItem="rdh-3H-YDo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2nY-Yc-rn8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3G6-OF-ZFz" secondAttribute="bottom" id="6um-AT-v3M"/>
-                            <constraint firstItem="rdh-3H-YDo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bHd-mS-qmJ"/>
-                            <constraint firstItem="3G6-OF-ZFz" firstAttribute="top" secondItem="rdh-3H-YDo" secondAttribute="bottom" id="d0O-B6-Gpc"/>
-                            <constraint firstAttribute="trailing" secondItem="3G6-OF-ZFz" secondAttribute="trailing" id="lNw-5A-pjQ"/>
-                            <constraint firstAttribute="trailing" secondItem="rdh-3H-YDo" secondAttribute="trailing" id="yj5-V0-H2a"/>
+                            <constraint firstAttribute="trailing" secondItem="3G6-OF-ZFz" secondAttribute="trailing" id="4yV-r0-aBC"/>
+                            <constraint firstItem="3G6-OF-ZFz" firstAttribute="top" secondItem="FkS-yc-4hT" secondAttribute="bottom" constant="10" id="CIR-v3-Xj4"/>
+                            <constraint firstItem="FkS-yc-4hT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EwI-eL-Sud"/>
+                            <constraint firstItem="3G6-OF-ZFz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LXe-YP-K0a"/>
+                            <constraint firstItem="FkS-yc-4hT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="MoG-ut-Coy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3G6-OF-ZFz" secondAttribute="bottom" id="PnS-JR-i3J"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FkS-yc-4hT" secondAttribute="trailing" id="nxi-SL-ULv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="BETCH" id="Yq8-iF-VYz"/>
                     <connections>
+                        <outlet property="buttonsView" destination="FkS-yc-4hT" id="ypN-vM-4qV"/>
                         <outlet property="tableView" destination="3G6-OF-ZFz" id="Xbq-cQ-gZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="31" y="15"/>
         </scene>
     </scenes>
 </document>

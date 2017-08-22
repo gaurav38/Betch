@@ -12,8 +12,11 @@ import MGSwipeTableCell
 class CryptoCurrenciesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    fileprivate var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    @IBOutlet weak var buttonsView: UIView!
+    
     var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
+    fileprivate var changeDuration = ChangeDuration.OneDay
+    fileprivate var appDelegate = UIApplication.shared.delegate as! AppDelegate
     fileprivate var viewModel: CryptoCurrenciesViewModelProtocol? {
         didSet {
             self.viewModel?.cryptoCurrenciesChanged = { [unowned self] viewModel in
@@ -25,10 +28,31 @@ class CryptoCurrenciesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        buttonsView.layer.borderWidth = 1.0
+        buttonsView.layer.cornerRadius = 5.0
+        buttonsView.layer.borderColor = Colors.HEADER_BLUE.cgColor
         tableView.delegate = self
         tableView.dataSource = self
         viewModel = appDelegate.container.resolve(CryptoCurrenciesViewModelProtocol.self)
         viewModel?.fetchCryptoCurrencies()
+    }
+    
+    @IBAction func changeCurrency(_ sender: Any) {
+    }
+    
+    @IBAction func change1Hour(_ sender: Any) {
+        changeDuration = ChangeDuration.OneHour
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func change24Hours(_ sender: Any) {
+        changeDuration = ChangeDuration.OneDay
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func change7Days(_ sender: Any) {
+        changeDuration = ChangeDuration.SevenDays
+        self.tableView.reloadData()
     }
 }
 
@@ -42,9 +66,22 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
         let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
         cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
         cell.currencyPrice.text = "\(appDelegate.currencySymbol!)\(currency.price!)"
-        cell.currencyPriceChange.text = "\(currency.percent_change_24h!)%"
-        cell.currencyChangePeriod.text = "24 hours"
-        if (currency.percent_change_24h as NSString).floatValue < 0 {
+        cell.currencyChangePeriod.text = changeDuration.rawValue
+        
+        var priceChange: Float = 0.0
+        switch changeDuration {
+        case .OneHour:
+            priceChange = (currency.percent_change_1h as NSString).floatValue
+            cell.currencyPriceChange.text = "\(currency.percent_change_1h!)%"
+        case .OneDay:
+            priceChange = (currency.percent_change_24h as NSString).floatValue
+            cell.currencyPriceChange.text = "\(currency.percent_change_24h!)%"
+        case .SevenDays:
+            priceChange = (currency.percent_change_7d as NSString).floatValue
+            cell.currencyPriceChange.text = "\(currency.percent_change_7d!)%"
+        }
+        
+        if priceChange < 0 {
             cell.currencyChangeImageView.image = #imageLiteral(resourceName: "DownArrow")
         } else {
             cell.currencyChangeImageView.image = #imageLiteral(resourceName: "UpArrow")
@@ -52,7 +89,6 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
         if (currency.isFavorite ?? false) {
             cell.favoriteIndicator.isHidden = false
         }
-        
         cell.currencySymbol = currency.symbol!
         
         if let favorited = currency.isFavorite, favorited {

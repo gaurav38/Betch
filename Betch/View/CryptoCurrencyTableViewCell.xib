@@ -56,7 +56,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hEJ-0x-JA6">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="65.5"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="11" height="65.5"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
