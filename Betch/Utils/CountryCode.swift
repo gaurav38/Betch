@@ -11,7 +11,7 @@ import Foundation
 class CountryCode {
     
     private static let defaultCurrency = "USD"
-    private static let supportedCurrencies = ["AUD",
+    public static let supportedCurrencies = ["AUD",
                                               "BRL",
                                               "CAD",
                                               "CHF",
@@ -24,7 +24,8 @@ class CountryCode {
                                               "JPY",
                                               "KRW",
                                               "MXN",
-                                              "RUB"]
+                                              "RUB",
+                                              "USD"]
     
     public static var currency: String?
     public static var currencySymbol: String?
@@ -40,6 +41,17 @@ class CountryCode {
             currency = defaultCurrency
             currencySymbol = "$"
         }
+        return Currency(currency!, currencySymbol!)
+    }
+    
+    public static func getCurrency(currencyCode: String) -> Currency {
+        currency = currencyCode
+        
+        let locale = Locale
+            .availableIdentifiers
+            .map { Locale(identifier: $0) }
+            .first { $0.currencyCode == currencyCode }
+        currencySymbol = locale?.currencySymbol ?? currencyCode
         return Currency(currency!, currencySymbol!)
     }
 }

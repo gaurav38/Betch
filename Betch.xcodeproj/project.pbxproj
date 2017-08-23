@@ -25,6 +25,7 @@
 		C611D1A61F468177007A4DA8 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1A51F468177007A4DA8 /* CountryCode.swift */; };
 		C611D1A81F4BAE81007A4DA8 /* ColorResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1A71F4BAE81007A4DA8 /* ColorResources.swift */; };
 		C611D1AA1F4BB3CC007A4DA8 /* ChangeDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1A91F4BB3CC007A4DA8 /* ChangeDuration.swift */; };
+		C611D1AC1F4CFBC6007A4DA8 /* ImageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C611D1AB1F4CFBC6007A4DA8 /* ImageHelpers.swift */; };
 		D4F9A79B30A637A7B4F73A08 /* Pods_Betch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637A02AD5D407AC6CD1D0441 /* Pods_Betch.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		C611D1A51F468177007A4DA8 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		C611D1A71F4BAE81007A4DA8 /* ColorResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorResources.swift; sourceTree = "<group>"; };
 		C611D1A91F4BB3CC007A4DA8 /* ChangeDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDuration.swift; sourceTree = "<group>"; };
+		C611D1AB1F4CFBC6007A4DA8 /* ImageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				C611D1A51F468177007A4DA8 /* CountryCode.swift */,
 				C611D1A71F4BAE81007A4DA8 /* ColorResources.swift */,
+				C611D1AB1F4CFBC6007A4DA8 /* ImageHelpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				C611D1AA1F4BB3CC007A4DA8 /* ChangeDuration.swift in Sources */,
 				C611D1901F3F911F007A4DA8 /* ApiConfiguration.swift in Sources */,
 				C611D1A61F468177007A4DA8 /* CountryCode.swift in Sources */,
+				C611D1AC1F4CFBC6007A4DA8 /* ImageHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

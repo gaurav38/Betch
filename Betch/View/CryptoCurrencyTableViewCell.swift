@@ -14,7 +14,6 @@ class CryptoCurrencyTableViewCell: MGSwipeTableCell {
     @IBOutlet weak var currencyName: CurrencyTextField!
     @IBOutlet weak var currencyPrice: CurrencyTextField!
     @IBOutlet weak var currencyPriceChange: UITextField!
-    @IBOutlet weak var currencyChangePeriod: UITextField!
     @IBOutlet weak var currencyChangeImageView: UIImageView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var favoriteIndicator: UIImageView!
@@ -27,7 +26,6 @@ class CryptoCurrencyTableViewCell: MGSwipeTableCell {
         currencyName.isUserInteractionEnabled = false
         currencyPrice.isUserInteractionEnabled = false
         currencyPriceChange.isUserInteractionEnabled = false
-        currencyChangePeriod.isUserInteractionEnabled = false
         favoriteIndicator.isHidden = true
     }
 

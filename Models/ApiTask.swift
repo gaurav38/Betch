@@ -23,20 +23,32 @@ class ApiTask {
     }
     
     public func start() {
-        if continueExecution {
-            self.initSessionTask()
-            self.task?.resume()
-            
-            let delayInNanoSeconds = UInt64(requestInterval) * NSEC_PER_SEC
-            let time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: time) {
-                self.start()
-            }
-        }
+        print("Starting for \(request.url!)")
+        execute()
     }
     
     public func stop() {
+        print("Stopping for \(request.url!)")
         continueExecution = false
+    }
+    
+    private func resume() {
+        if continueExecution {
+            print("Resuming for \(request.url!)")
+            execute()
+        }
+    }
+    
+    private func execute() {
+        self.initSessionTask()
+        print("Executing for \(request.url!)")
+        self.task?.resume()
+        
+        let delayInNanoSeconds = UInt64(requestInterval) * NSEC_PER_SEC
+        let time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            self.resume()
+        }
     }
     
     private func initSessionTask() {

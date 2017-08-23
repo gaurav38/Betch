@@ -13,6 +13,12 @@ class CryptoCurrenciesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var change1HourButton: UIButton!
+    @IBOutlet weak var change24HoursButton: UIButton!
+    @IBOutlet weak var change7DaysButton: UIButton!
+    @IBOutlet weak var currencyTextField: UITextField!
+    @IBOutlet weak var currencyChangeView: UIView!
+    @IBOutlet weak var currencyTableView: UITableView!
     
     var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
     fileprivate var changeDuration = ChangeDuration.OneDay
@@ -24,103 +30,165 @@ class CryptoCurrenciesViewController: UIViewController {
             }
         }
     }
+    fileprivate var localCurrency: Currency!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buttonsView.layer.borderWidth = 1.0
-        buttonsView.layer.cornerRadius = 5.0
-        buttonsView.layer.borderColor = Colors.HEADER_BLUE.cgColor
+        initializeView()
         tableView.delegate = self
         tableView.dataSource = self
+        currencyTextField.delegate = self
+        currencyTableView.delegate = self
+        currencyTableView.dataSource = self
+        localCurrency = CountryCode.getCurrency()
+        currencyTextField.text = localCurrency.name!
         viewModel = appDelegate.container.resolve(CryptoCurrenciesViewModelProtocol.self)
         viewModel?.fetchCryptoCurrencies()
     }
     
-    @IBAction func changeCurrency(_ sender: Any) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    private func initializeView() {
+        buttonsView.layer.borderWidth = 1.0
+        buttonsView.layer.cornerRadius = 5.0
+        buttonsView.layer.borderColor = Colors.HEADER_BLUE.cgColor
+        change1HourButton.setTitleColor(UIColor.white, for: .selected)
+        change24HoursButton.setTitleColor(UIColor.white, for: .selected)
+        change7DaysButton.setTitleColor(UIColor.white, for: .selected)
+        change24HoursButton.isSelected = true
+        currencyChangeView.isHidden = true
     }
     
     @IBAction func change1Hour(_ sender: Any) {
         changeDuration = ChangeDuration.OneHour
+        change1HourButton.isSelected = true
+        change24HoursButton.isSelected = false
+        change7DaysButton.isSelected = false
         self.tableView.reloadData()
     }
     
     @IBAction func change24Hours(_ sender: Any) {
         changeDuration = ChangeDuration.OneDay
+        change1HourButton.isSelected = false
+        change24HoursButton.isSelected = true
+        change7DaysButton.isSelected = false
         self.tableView.reloadData()
     }
     
     @IBAction func change7Days(_ sender: Any) {
         changeDuration = ChangeDuration.SevenDays
+        change1HourButton.isSelected = false
+        change24HoursButton.isSelected = false
+        change7DaysButton.isSelected = true
         self.tableView.reloadData()
     }
 }
 
 extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel?.cryptoCurrencies.count)!
+        if tableView == self.tableView {
+            return (viewModel?.cryptoCurrencies.count)!
+        } else if tableView == currencyTableView {
+            return CountryCode.supportedCurrencies.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = Bundle.main.loadNibNamed("CryptoCurrencyTableViewCell", owner: self, options: nil)?.first as! CryptoCurrencyTableViewCell
-        let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
-        cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
-        cell.currencyPrice.text = "\(appDelegate.currencySymbol!)\(currency.price!)"
-        cell.currencyChangePeriod.text = changeDuration.rawValue
-        
-        var priceChange: Float = 0.0
-        switch changeDuration {
-        case .OneHour:
-            priceChange = (currency.percent_change_1h as NSString).floatValue
-            cell.currencyPriceChange.text = "\(currency.percent_change_1h!)%"
-        case .OneDay:
-            priceChange = (currency.percent_change_24h as NSString).floatValue
-            cell.currencyPriceChange.text = "\(currency.percent_change_24h!)%"
-        case .SevenDays:
-            priceChange = (currency.percent_change_7d as NSString).floatValue
-            cell.currencyPriceChange.text = "\(currency.percent_change_7d!)%"
-        }
-        
-        if priceChange < 0 {
-            cell.currencyChangeImageView.image = #imageLiteral(resourceName: "DownArrow")
-        } else {
-            cell.currencyChangeImageView.image = #imageLiteral(resourceName: "UpArrow")
-        }
-        if (currency.isFavorite ?? false) {
-            cell.favoriteIndicator.isHidden = false
-        }
-        cell.currencySymbol = currency.symbol!
-        
-        if let favorited = currency.isFavorite, favorited {
-            let unFavoriteButton = MGSwipeButton(title: "UnFavorite", icon: #imageLiteral(resourceName: "Unfavorite"), backgroundColor: .white) {
-                (sender: MGSwipeTableCell!) -> Bool in
-                if let cell = sender as? CryptoCurrencyTableViewCell {
-                    self.viewModel?.removeFavorite(currency: cell.currencySymbol!)
-                }
-                return true
+        if tableView == self.tableView {
+            let cell = Bundle.main.loadNibNamed("CryptoCurrencyTableViewCell", owner: self, options: nil)?.first as! CryptoCurrencyTableViewCell
+            let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
+            let formattedPrice = String(format:"%.4f", (currency.price! as NSString).floatValue)
+            cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
+            cell.currencyPrice.text = "\(localCurrency.symbol!)\(formattedPrice)"
+            
+            var priceChange: Float = 0.0
+            switch changeDuration {
+            case .OneHour:
+                priceChange = (currency.percent_change_1h as NSString).floatValue
+            case .OneDay:
+                priceChange = (currency.percent_change_24h as NSString).floatValue
+            case .SevenDays:
+                priceChange = (currency.percent_change_7d as NSString).floatValue
             }
-            cell.leftButtons = [unFavoriteButton]
-        } else {
-            let favoriteButton = MGSwipeButton(title: "Favorite", icon: #imageLiteral(resourceName: "Favorite"), backgroundColor: .white) {
-                (sender: MGSwipeTableCell!) -> Bool in
-                if let cell = sender as? CryptoCurrencyTableViewCell {
-                    self.viewModel?.addFavorite(currency: cell.currencySymbol!)
-                }
-                return true
+            cell.currencyPriceChange.text = "\(priceChange)%"
+            
+            if priceChange < 0 {
+                cell.currencyChangeImageView.image = #imageLiteral(resourceName: "DownArrow")
+            } else {
+                cell.currencyChangeImageView.image = #imageLiteral(resourceName: "UpArrow")
             }
-            cell.leftButtons = [favoriteButton]
+            if (currency.isFavorite ?? false) {
+                cell.favoriteIndicator.isHidden = false
+            }
+            cell.currencySymbol = currency.symbol!
+            
+            if let favorited = currency.isFavorite, favorited {
+                let unFavoriteButton = MGSwipeButton(title: "UnFavorite", icon: #imageLiteral(resourceName: "Unfavorite"), backgroundColor: .white) {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    if let cell = sender as? CryptoCurrencyTableViewCell {
+                        self.viewModel?.removeFavorite(currency: cell.currencySymbol!)
+                    }
+                    return true
+                }
+                cell.leftButtons = [unFavoriteButton]
+            } else {
+                let favoriteButton = MGSwipeButton(title: "Favorite", icon: #imageLiteral(resourceName: "Favorite"), backgroundColor: .white) {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    if let cell = sender as? CryptoCurrencyTableViewCell {
+                        self.viewModel?.addFavorite(currency: cell.currencySymbol!)
+                    }
+                    return true
+                }
+                cell.leftButtons = [favoriteButton]
+            }
+            
+            cell.leftSwipeSettings.transition = .border
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell")!
+            cell.textLabel?.text = CountryCode.supportedCurrencies[indexPath.row]
+            return cell
         }
         
-        cell.leftSwipeSettings.transition = .border
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110;
+        if tableView == self.tableView {
+            return 110
+        }
+        return 40
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if tableView == self.tableView {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.tableView {
+            return
+        } else {
+            self.currencyTextField.text = CountryCode.supportedCurrencies[indexPath.row]
+            ApiConfiguration.defaultCurrency = CountryCode.supportedCurrencies[indexPath.row]
+            localCurrency = CountryCode.getCurrency(currencyCode: CountryCode.supportedCurrencies[indexPath.row])
+            self.viewModel?.fetchCryptoCurrencies()
+            self.currencyChangeView.isHidden = true
+        }
+    }
+}
+
+extension CryptoCurrenciesViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let image = UIImage(fromView: self.view)?.applyDarkEffect()
+        self.currencyChangeView.backgroundColor = UIColor(patternImage: image!)
+        self.currencyChangeView.isHidden = false
+        return false
     }
 }
 

@@ -15,13 +15,18 @@ class CoinMarketCapService {
     private var requestInterval: Int!
     
     init() {
-        self.currency = ApiConfiguration.defaultCurrency
         self.coinsLimit = ApiConfiguration.coinsLimit
         self.requestInterval = ApiConfiguration.requestInterval
     }
     
+    private func reset() {
+        self.currency = ApiConfiguration.defaultCurrency
+    }
+    
     public func CreateAndStartApiRequest(_ callBack: @escaping (_ data: [CryptoCurrency]) -> Void) {
         currentApiTask?.stop()
+        currentApiTask = nil
+        reset()
         
         let params = [
             "\(ApiResources.RequestParams.Limit)": coinsLimit,
