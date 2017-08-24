@@ -36,6 +36,7 @@ class CryptoCurrenciesViewController: UIViewController {
         super.viewDidLoad()
         
         initializeView()
+        tableView.register(UINib(nibName: "CryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CryptoCurrencyTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
         currencyTextField.delegate = self
@@ -99,11 +100,15 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == self.tableView {
-            let cell = Bundle.main.loadNibNamed("CryptoCurrencyTableViewCell", owner: self, options: nil)?.first as! CryptoCurrencyTableViewCell
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCurrencyTableViewCell", for: indexPath) as! CryptoCurrencyTableViewCell
+            resetCell(cell: cell)
+            
             let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
             let formattedPrice = String(format:"%.4f", (currency.price! as NSString).floatValue)
             cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
             cell.currencyPrice.text = "\(localCurrency.symbol!)\(formattedPrice)"
+            cell.currencySymbol = currency.symbol!
             
             var priceChange: Float = 0.0
             switch changeDuration {
@@ -114,6 +119,7 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
             case .SevenDays:
                 priceChange = (currency.percent_change_7d as NSString).floatValue
             }
+            
             cell.currencyPriceChange.text = "\(priceChange)%"
             
             if priceChange < 0 {
@@ -124,7 +130,6 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
             if (currency.isFavorite ?? false) {
                 cell.favoriteIndicator.isHidden = false
             }
-            cell.currencySymbol = currency.symbol!
             
             if let favorited = currency.isFavorite, favorited {
                 let unFavoriteButton = MGSwipeButton(title: "UnFavorite", icon: #imageLiteral(resourceName: "Unfavorite"), backgroundColor: .white) {
@@ -146,7 +151,7 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
                 cell.leftButtons = [favoriteButton]
             }
             
-            cell.leftSwipeSettings.transition = .border
+            cell.leftSwipeSettings.transition = .rotate3D
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell")!
@@ -180,6 +185,14 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
             self.viewModel?.fetchCryptoCurrencies()
             self.currencyChangeView.isHidden = true
         }
+    }
+    
+    private func resetCell(cell: CryptoCurrencyTableViewCell) {
+        cell.currencyName.text = ""
+        cell.currencyPrice.text = ""
+        cell.currencyPriceChange.text = ""
+        cell.favoriteIndicator.isHidden = true
+        cell.currencySymbol = localCurrency.name
     }
 }
 
