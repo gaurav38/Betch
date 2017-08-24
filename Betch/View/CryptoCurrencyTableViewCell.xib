@@ -54,20 +54,20 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dba-Zh-dCu" userLabel="CurrencyPrice" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qGY-Zl-QlI">
                                                 <rect key="frame" x="160" y="0.0" width="140" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00%" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="79.5" height="50"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00%" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Meh-Is-4Kj" userLabel="CurrencyPriceChange" customClass="CurrencyTextField" customModule="Betch" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="50"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-I6-058" userLabel="CurrencyPriceChangeImage">
-                                                        <rect key="frame" x="79.5" y="0.0" width="60.5" height="50"/>
+                                                        <rect key="frame" x="72.5" y="0.0" width="67.5" height="50"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
