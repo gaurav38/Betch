@@ -14,7 +14,7 @@
         <scene sceneID="73o-n4-JmY">
             <objects>
                 <navigationController id="h4Z-do-PIy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sG0-g3-uyk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sG0-g3-uyk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,21 +170,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pkq-PZ-a8b" userLabel="CurrencyChangeView">
-                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.84999999999999998" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="lw1-xL-6Fq" userLabel="CurrencyChange View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Vx-n8-taJ" userLabel="CurrencyTableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SLZ-L1-xWK" userLabel="CurrencyTableView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyTableViewCell" textLabel="4rU-vL-zYT" style="IBUITableViewCellStyleDefault" id="4TX-7S-HTo">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyTableViewCell" textLabel="gp4-Uw-a2q" style="IBUITableViewCellStyleDefault" id="buA-Lm-QcB">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4TX-7S-HTo" id="YJT-hT-sR8">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="buA-Lm-QcB" id="rHp-s9-0gI">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4rU-vL-zYT">
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gp4-Uw-a2q">
                                                             <rect key="frame" x="15" y="0.0" width="345" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -199,26 +199,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="6Vx-n8-taJ" firstAttribute="leading" secondItem="pkq-PZ-a8b" secondAttribute="leading" id="8RE-Sm-otm"/>
-                                    <constraint firstAttribute="bottom" secondItem="6Vx-n8-taJ" secondAttribute="bottom" id="SjJ-kh-T5a"/>
-                                    <constraint firstItem="6Vx-n8-taJ" firstAttribute="top" secondItem="pkq-PZ-a8b" secondAttribute="top" id="XIe-Q4-avS"/>
-                                    <constraint firstAttribute="trailing" secondItem="6Vx-n8-taJ" secondAttribute="trailing" id="q1R-fL-872"/>
+                                    <constraint firstAttribute="trailing" secondItem="SLZ-L1-xWK" secondAttribute="trailing" id="HmK-uj-1CX"/>
+                                    <constraint firstItem="SLZ-L1-xWK" firstAttribute="leading" secondItem="lw1-xL-6Fq" secondAttribute="leading" id="NGM-bj-UsO"/>
+                                    <constraint firstItem="SLZ-L1-xWK" firstAttribute="top" secondItem="lw1-xL-6Fq" secondAttribute="top" id="itc-VE-d3W"/>
+                                    <constraint firstAttribute="bottom" secondItem="SLZ-L1-xWK" secondAttribute="bottom" id="zW3-zn-ush"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pkq-PZ-a8b" secondAttribute="bottom" id="43M-eB-e1v"/>
                             <constraint firstAttribute="trailing" secondItem="3G6-OF-ZFz" secondAttribute="trailing" id="4yV-r0-aBC"/>
+                            <constraint firstAttribute="trailing" secondItem="lw1-xL-6Fq" secondAttribute="trailing" id="8IJ-yi-l88"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lw1-xL-6Fq" secondAttribute="bottom" id="BhL-jc-qBO"/>
                             <constraint firstItem="3G6-OF-ZFz" firstAttribute="top" secondItem="FkS-yc-4hT" secondAttribute="bottom" constant="10" id="CIR-v3-Xj4"/>
-                            <constraint firstItem="pkq-PZ-a8b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="D34-Yw-foC"/>
                             <constraint firstItem="FkS-yc-4hT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EwI-eL-Sud"/>
                             <constraint firstItem="3G6-OF-ZFz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LXe-YP-K0a"/>
                             <constraint firstItem="FkS-yc-4hT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="MoG-ut-Coy"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3G6-OF-ZFz" secondAttribute="bottom" id="PnS-JR-i3J"/>
-                            <constraint firstItem="pkq-PZ-a8b" firstAttribute="top" secondItem="FkS-yc-4hT" secondAttribute="top" id="f9Q-FK-EeU"/>
+                            <constraint firstItem="lw1-xL-6Fq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Tme-lr-1ia"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FkS-yc-4hT" secondAttribute="trailing" id="nxi-SL-ULv"/>
-                            <constraint firstAttribute="trailing" secondItem="pkq-PZ-a8b" secondAttribute="trailing" id="zWi-5j-33c"/>
+                            <constraint firstItem="lw1-xL-6Fq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vFD-Vm-bDr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="BETCH" id="Yq8-iF-VYz"/>
@@ -227,8 +227,8 @@
                         <outlet property="change1HourButton" destination="KaS-yS-95P" id="i14-nZ-Mle"/>
                         <outlet property="change24HoursButton" destination="cPQ-Ys-LZH" id="0DQ-Ub-gef"/>
                         <outlet property="change7DaysButton" destination="d1U-S0-gXW" id="b7r-EF-968"/>
-                        <outlet property="currencyChangeView" destination="pkq-PZ-a8b" id="XbT-hU-88m"/>
-                        <outlet property="currencyTableView" destination="6Vx-n8-taJ" id="qAH-Ay-OSk"/>
+                        <outlet property="currencyChangeView" destination="lw1-xL-6Fq" id="8xX-xw-r3l"/>
+                        <outlet property="currencyTableView" destination="SLZ-L1-xWK" id="rgB-uT-KCO"/>
                         <outlet property="currencyTextField" destination="XtS-DT-12D" id="XrC-KW-pR6"/>
                         <outlet property="tableView" destination="3G6-OF-ZFz" id="Xbq-cQ-gZl"/>
                     </connections>

@@ -17,8 +17,8 @@ class CryptoCurrenciesViewController: UIViewController {
     @IBOutlet weak var change24HoursButton: UIButton!
     @IBOutlet weak var change7DaysButton: UIButton!
     @IBOutlet weak var currencyTextField: UITextField!
-    @IBOutlet weak var currencyChangeView: UIView!
     @IBOutlet weak var currencyTableView: UITableView!
+    @IBOutlet weak var currencyChangeView: UIView!
     
     var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
     fileprivate var changeDuration = ChangeDuration.OneDay
@@ -198,8 +198,8 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
 
 extension CryptoCurrenciesViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let image = UIImage(fromView: self.view)?.applyDarkEffect()
-        self.currencyChangeView.backgroundColor = UIColor(patternImage: image!)
+        //let image = UIImage(fromView: self.view)?.applyDarkEffect()
+        //self.currencyChangeView.backgroundColor = UIColor(patternImage: image!)
         self.currencyChangeView.isHidden = false
         return false
     }

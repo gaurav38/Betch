@@ -13,8 +13,8 @@ import Swinject
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private(set) var currencyCode: String?
-    private(set) var currencySymbol: String?
+    //private(set) var currencyCode: String?
+    //private(set) var currencySymbol: String?
     let container: Container = {
         let container = Container()
         container.register(CoinMarketCapService.self) { _ in CoinMarketCapService() }
@@ -27,11 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let currency = CountryCode.getCurrency()
-        currencyCode = currency.name
-        currencySymbol = currency.symbol
-        ApiConfiguration.coinsLimit = 25
+        //currencyCode = currency.name
+        //currencySymbol = currency.symbol
+        ApiConfiguration.coinsLimit = 30
         ApiConfiguration.defaultCurrency = currency.name
-        print(ApiConfiguration.defaultCurrency)
         ApiConfiguration.requestInterval = 60
         return true
     }
