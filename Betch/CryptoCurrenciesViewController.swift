@@ -20,6 +20,7 @@ class CryptoCurrenciesViewController: UIViewController {
     @IBOutlet weak var currencyTableView: UITableView!
     @IBOutlet weak var currencyChangeView: UIView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var offlineErrorView: UIView!
     
     var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
     fileprivate var changeDuration = ChangeDuration.OneDay
@@ -44,7 +45,9 @@ class CryptoCurrenciesViewController: UIViewController {
         currencyTextField.text = localCurrency.name!
         NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         viewModel = appDelegate.container.resolve(CryptoCurrenciesViewModelProtocol.self)
-        viewModel?.fetchCryptoCurrencies()
+        if isNetworkAvailable() {
+            viewModel?.fetchCryptoCurrencies()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -60,7 +63,13 @@ class CryptoCurrenciesViewController: UIViewController {
         change7DaysButton.setTitleColor(UIColor.white, for: .selected)
         change24HoursButton.isSelected = true
         currencyChangeView.isHidden = true
-        loadingView.isHidden = false
+        if isNetworkAvailable() {
+            offlineErrorView.isHidden = true
+            loadingView.isHidden = false
+        } else {
+            offlineErrorView.isHidden = false
+            loadingView.isHidden = true
+        }
         tableView.delegate = self
         tableView.dataSource = self
         currencyTextField.delegate = self
@@ -93,7 +102,25 @@ class CryptoCurrenciesViewController: UIViewController {
     }
     
     func statusManager(_ notification: NSNotification) {
-        //updateUserInterface()
+        if isNetworkAvailable() {
+            offlineErrorView.isHidden = true
+            viewModel?.fetchCryptoCurrencies()
+            if viewModel?.cryptoCurrencies.count == 0 {
+                loadingView.isHidden = false
+            }
+        } else {
+            offlineErrorView.isHidden = false
+        }
+    }
+    
+    private func isNetworkAvailable() -> Bool {
+        guard let status = Network.reachability?.status else { return false }
+        switch status {
+        case .unreachable:
+            return false
+        case .wifi, .wwan:
+            return true
+        }
     }
 }
 
