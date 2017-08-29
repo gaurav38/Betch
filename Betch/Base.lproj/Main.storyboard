@@ -205,9 +205,39 @@
                                     <constraint firstAttribute="bottom" secondItem="SLZ-L1-xWK" secondAttribute="bottom" id="zW3-zn-ush"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwG-RO-0DP" userLabel="LoadingView">
+                                <rect key="frame" x="67" y="298.5" width="240" height="70"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JZB-Q3-AxY">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="70"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i7i-RB-db0">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="37"/>
+                                                <color key="color" red="0.13628472220000001" green="0.60462494889999996" blue="0.80579969620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching Cryptocurrencies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWl-ut-t7i">
+                                                <rect key="frame" x="0.0" y="47" width="240" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="275-lb-U7X"/>
+                                    <constraint firstItem="JZB-Q3-AxY" firstAttribute="top" secondItem="xwG-RO-0DP" secondAttribute="top" id="fB4-ZT-wvP"/>
+                                    <constraint firstAttribute="bottom" secondItem="JZB-Q3-AxY" secondAttribute="bottom" id="fjR-Zs-k7D"/>
+                                    <constraint firstItem="JZB-Q3-AxY" firstAttribute="leading" secondItem="xwG-RO-0DP" secondAttribute="leading" id="jdA-eA-vlr"/>
+                                    <constraint firstAttribute="trailing" secondItem="JZB-Q3-AxY" secondAttribute="trailing" id="mXt-a3-MN5"/>
+                                    <constraint firstAttribute="width" constant="240" id="rzi-xj-jPU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xwG-RO-0DP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1tG-9a-wv3"/>
                             <constraint firstAttribute="trailing" secondItem="3G6-OF-ZFz" secondAttribute="trailing" id="4yV-r0-aBC"/>
                             <constraint firstAttribute="trailing" secondItem="lw1-xL-6Fq" secondAttribute="trailing" id="8IJ-yi-l88"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lw1-xL-6Fq" secondAttribute="bottom" id="BhL-jc-qBO"/>
@@ -218,6 +248,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3G6-OF-ZFz" secondAttribute="bottom" id="PnS-JR-i3J"/>
                             <constraint firstItem="lw1-xL-6Fq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Tme-lr-1ia"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FkS-yc-4hT" secondAttribute="trailing" id="nxi-SL-ULv"/>
+                            <constraint firstItem="xwG-RO-0DP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pa9-qK-Adm"/>
                             <constraint firstItem="lw1-xL-6Fq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vFD-Vm-bDr"/>
                         </constraints>
                     </view>
@@ -230,6 +261,7 @@
                         <outlet property="currencyChangeView" destination="lw1-xL-6Fq" id="8xX-xw-r3l"/>
                         <outlet property="currencyTableView" destination="SLZ-L1-xWK" id="rgB-uT-KCO"/>
                         <outlet property="currencyTextField" destination="XtS-DT-12D" id="XrC-KW-pR6"/>
+                        <outlet property="loadingView" destination="xwG-RO-0DP" id="oeo-Ee-XGm"/>
                         <outlet property="tableView" destination="3G6-OF-ZFz" id="Xbq-cQ-gZl"/>
                     </connections>
                 </viewController>

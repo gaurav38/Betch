@@ -19,6 +19,7 @@ class CryptoCurrenciesViewController: UIViewController {
     @IBOutlet weak var currencyTextField: UITextField!
     @IBOutlet weak var currencyTableView: UITableView!
     @IBOutlet weak var currencyChangeView: UIView!
+    @IBOutlet weak var loadingView: UIView!
     
     var favorites = UserDefaults.standard.array(forKey: "favorites") as? [String] ?? [String]()
     fileprivate var changeDuration = ChangeDuration.OneDay
@@ -26,24 +27,22 @@ class CryptoCurrenciesViewController: UIViewController {
     fileprivate var viewModel: CryptoCurrenciesViewModelProtocol? {
         didSet {
             self.viewModel?.cryptoCurrenciesChanged = { [unowned self] viewModel in
+                self.loadingView.isHidden = true
                 self.tableView.reloadData()
             }
         }
     }
-    fileprivate var localCurrency: Currency!
+    fileprivate var localCurrency: Currency! {
+        return appDelegate.localCurrency!
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initializeView()
         tableView.register(UINib(nibName: "CryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "CryptoCurrencyTableViewCell")
-        tableView.delegate = self
-        tableView.dataSource = self
-        currencyTextField.delegate = self
-        currencyTableView.delegate = self
-        currencyTableView.dataSource = self
-        localCurrency = CountryCode.getCurrency()
         currencyTextField.text = localCurrency.name!
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
         viewModel = appDelegate.container.resolve(CryptoCurrenciesViewModelProtocol.self)
         viewModel?.fetchCryptoCurrencies()
     }
@@ -61,6 +60,12 @@ class CryptoCurrenciesViewController: UIViewController {
         change7DaysButton.setTitleColor(UIColor.white, for: .selected)
         change24HoursButton.isSelected = true
         currencyChangeView.isHidden = true
+        loadingView.isHidden = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        currencyTextField.delegate = self
+        currencyTableView.delegate = self
+        currencyTableView.dataSource = self
     }
     
     @IBAction func change1Hour(_ sender: Any) {
@@ -85,6 +90,10 @@ class CryptoCurrenciesViewController: UIViewController {
         change24HoursButton.isSelected = false
         change7DaysButton.isSelected = true
         self.tableView.reloadData()
+    }
+    
+    func statusManager(_ notification: NSNotification) {
+        //updateUserInterface()
     }
 }
 
@@ -181,7 +190,7 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             self.currencyTextField.text = CountryCode.supportedCurrencies[indexPath.row]
             ApiConfiguration.defaultCurrency = CountryCode.supportedCurrencies[indexPath.row]
-            localCurrency = CountryCode.getCurrency(currencyCode: CountryCode.supportedCurrencies[indexPath.row])
+            appDelegate.localCurrency = CountryCode.getCurrency(currencyCode: CountryCode.supportedCurrencies[indexPath.row])
             self.viewModel?.fetchCryptoCurrencies()
             self.currencyChangeView.isHidden = true
         }

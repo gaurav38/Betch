@@ -26,6 +26,7 @@
 		C6FC6A471F54E35400A4979F /* ApiResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC6A461F54E35400A4979F /* ApiResources.swift */; };
 		C6FC6A4A1F54E36A00A4979F /* ApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC6A481F54E36A00A4979F /* ApiTask.swift */; };
 		C6FC6A4B1F54E36A00A4979F /* CoinMarketCapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC6A491F54E36A00A4979F /* CoinMarketCapService.swift */; };
+		C6FC6A4D1F54EBCC00A4979F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC6A4C1F54EBCC00A4979F /* Reachability.swift */; };
 		D4F9A79B30A637A7B4F73A08 /* Pods_Betch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637A02AD5D407AC6CD1D0441 /* Pods_Betch.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		C6FC6A461F54E35400A4979F /* ApiResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiResources.swift; sourceTree = "<group>"; };
 		C6FC6A481F54E36A00A4979F /* ApiTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiTask.swift; sourceTree = "<group>"; };
 		C6FC6A491F54E36A00A4979F /* CoinMarketCapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinMarketCapService.swift; sourceTree = "<group>"; };
+		C6FC6A4C1F54EBCC00A4979F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				C6FC6A481F54E36A00A4979F /* ApiTask.swift */,
 				C6FC6A491F54E36A00A4979F /* CoinMarketCapService.swift */,
+				C6FC6A4C1F54EBCC00A4979F /* Reachability.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				C6FC6A431F54E33B00A4979F /* ChangeDuration.swift in Sources */,
 				C611D1A61F468177007A4DA8 /* CountryCode.swift in Sources */,
 				C6FC6A451F54E34400A4979F /* CryptoCurrency.swift in Sources */,
+				C6FC6A4D1F54EBCC00A4979F /* Reachability.swift in Sources */,
 				C611D1AC1F4CFBC6007A4DA8 /* ImageHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
