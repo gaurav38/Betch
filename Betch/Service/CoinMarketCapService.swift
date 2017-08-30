@@ -34,7 +34,6 @@ class CoinMarketCapService {
         ] as [String: AnyObject]
         
         let requestUrl = getURLFromParameters(parameters: params, withPathExtension: nil)
-        print(requestUrl)
         let request = URLRequest(url: requestUrl)
         
         currentApiTask = ApiTask(request, requestInterval) { data in

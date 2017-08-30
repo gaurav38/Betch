@@ -23,25 +23,21 @@ class ApiTask {
     }
     
     public func start() {
-        print("Starting for \(request.url!)")
         execute()
     }
     
     public func stop() {
-        print("Stopping for \(request.url!)")
         continueExecution = false
     }
     
     private func resume() {
         if continueExecution {
-            print("Resuming for \(request.url!)")
             execute()
         }
     }
     
     private func execute() {
         self.initSessionTask()
-        print("Executing for \(request.url!)")
         self.task?.resume()
         
         let delayInNanoSeconds = UInt64(requestInterval) * NSEC_PER_SEC

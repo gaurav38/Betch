@@ -43,6 +43,23 @@ class ApiResources {
         "IDR": "price_idr",
         "KRW": "price_krw",
         "MXN": "price_mxn",
-        "RUB": "price_rub"
+        "RUB": "price_rub",
+        "CLP": "price_clp",
+        "CZK": "price_czk",
+        "DKK": "price_dkk",
+        "HUF": "price_huf",
+        "ILS": "price_ils",
+        "MYR": "price_myr",
+        "NOK": "price_nok",
+        "NZD": "price_nzd",
+        "PHP": "price_php",
+        "PKR": "price_pkr",
+        "PLN": "price_pln",
+        "SEK": "price_sek",
+        "SGD": "price_sgd",
+        "THB": "price_thb",
+        "TRY": "price_try",
+        "TWD": "price_twd",
+        "ZAR": "price_zar"
     ]
 }
