@@ -173,8 +173,19 @@
                             <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.84999999999999998" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="lw1-xL-6Fq" userLabel="CurrencyChange View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBr-9d-OWE" userLabel="Cancel Button">
+                                        <rect key="frame" x="312" y="13" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="DKt-T2-hhH"/>
+                                            <constraint firstAttribute="height" constant="50" id="jia-Kj-OqI"/>
+                                        </constraints>
+                                        <state key="normal" image="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelCurrencySelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fla-Hb-lB5"/>
+                                        </connections>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SLZ-L1-xWK" userLabel="CurrencyTableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="76" width="375" height="527"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyTableViewCell" textLabel="gp4-Uw-a2q" style="IBUITableViewCellStyleDefault" id="buA-Lm-QcB">
@@ -199,9 +210,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="VBr-9d-OWE" firstAttribute="top" secondItem="lw1-xL-6Fq" secondAttribute="top" constant="13" id="CJV-56-NKd"/>
                                     <constraint firstAttribute="trailing" secondItem="SLZ-L1-xWK" secondAttribute="trailing" id="HmK-uj-1CX"/>
                                     <constraint firstItem="SLZ-L1-xWK" firstAttribute="leading" secondItem="lw1-xL-6Fq" secondAttribute="leading" id="NGM-bj-UsO"/>
-                                    <constraint firstItem="SLZ-L1-xWK" firstAttribute="top" secondItem="lw1-xL-6Fq" secondAttribute="top" id="itc-VE-d3W"/>
+                                    <constraint firstItem="SLZ-L1-xWK" firstAttribute="top" secondItem="VBr-9d-OWE" secondAttribute="bottom" constant="13" id="OO9-D4-ZUB"/>
+                                    <constraint firstAttribute="trailing" secondItem="VBr-9d-OWE" secondAttribute="trailing" constant="13" id="gDv-RF-UTI"/>
                                     <constraint firstAttribute="bottom" secondItem="SLZ-L1-xWK" secondAttribute="bottom" id="zW3-zn-ush"/>
                                 </constraints>
                             </view>
@@ -302,6 +315,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cancel" width="24" height="24"/>
         <image name="Error" width="25" height="25"/>
     </resources>
 </document>

@@ -101,6 +101,10 @@ class CryptoCurrenciesViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    @IBAction func cancelCurrencySelection(_ sender: Any) {
+        currencyChangeView.isHidden = true
+    }
+    
     func statusManager(_ notification: NSNotification) {
         if isNetworkAvailable() {
             offlineErrorView.isHidden = true
