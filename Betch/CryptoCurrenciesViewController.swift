@@ -105,7 +105,7 @@ class CryptoCurrenciesViewController: UIViewController {
         currencyChangeView.isHidden = true
     }
     
-    func statusManager(_ notification: NSNotification) {
+    @objc func statusManager(_ notification: NSNotification) {
         if isNetworkAvailable() {
             offlineErrorView.isHidden = true
             viewModel?.fetchCryptoCurrencies()
@@ -129,9 +129,19 @@ class CryptoCurrenciesViewController: UIViewController {
 }
 
 extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == self.tableView {
             return (viewModel?.cryptoCurrencies.count)!
+        } else if tableView == currencyTableView {
+            return 1
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.tableView {
+            return 1
         } else if tableView == currencyTableView {
             return CountryCode.supportedCurrencies.count
         }
@@ -144,7 +154,7 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
             let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCurrencyTableViewCell", for: indexPath) as! CryptoCurrencyTableViewCell
             resetCell(cell: cell)
             
-            let currency = (viewModel?.cryptoCurrencies[indexPath.row])!
+            let currency = (viewModel?.cryptoCurrencies[indexPath.section])!
             let formattedPrice = String(format:"%.4f", (currency.price! as NSString).floatValue)
             cell.currencyName.text = "\(currency.symbol!) (\(currency.name!))"
             cell.currencyPrice.text = "\(localCurrency.symbol!)\(formattedPrice)"
@@ -196,9 +206,20 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyTableViewCell")!
             cell.textLabel?.text = CountryCode.supportedCurrencies[indexPath.row]
+            tableView.deselectRow(at: indexPath, animated: true)
             return cell
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -238,8 +259,6 @@ extension CryptoCurrenciesViewController: UITableViewDelegate, UITableViewDataSo
 
 extension CryptoCurrenciesViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //let image = UIImage(fromView: self.view)?.applyDarkEffect()
-        //self.currencyChangeView.backgroundColor = UIColor(patternImage: image!)
         self.currencyChangeView.isHidden = false
         return false
     }
